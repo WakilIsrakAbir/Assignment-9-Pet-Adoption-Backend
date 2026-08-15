@@ -1,14 +1,17 @@
-const jwt = require('jsonwebtoken');
+const { auth } = require('../utils/auth');
 
-const verifyToken = (req, res, next) => {
-  const token = req.cookies?.token;
-  if (!token) return res.status(401).json({ message: 'Unauthorized access' });
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ message: 'Unauthorized access' });
-    req.user = decoded;
+const verifyToken = async (req, res, next) => {
+  try {
+    const session = await auth.api.getSession({ headers: req.headers });
+    if (!session) {
+      return res.status(401).json({ message: 'Unauthorized access' });
+    }
+    req.user = session.user;
     next();
-  });
+  } catch (error) {
+    console.error("Session verification error:", error);
+    return res.status(401).json({ message: 'Unauthorized access' });
+  }
 };
 
 module.exports = verifyToken;

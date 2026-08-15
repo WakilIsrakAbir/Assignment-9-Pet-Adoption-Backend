@@ -15,12 +15,16 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
-const authRoutes = require('./routes/auth');
 const petRoutes = require('./routes/pets');
 const requestRoutes = require('./routes/requests');
 
-app.use('/api/auth', authRoutes);
+const { auth } = require('./utils/auth');
+const { toNodeHandler } = require('better-auth/node');
+
+app.all('/api/auth/*', toNodeHandler(auth.handler));
+// Note: We no longer need the custom authRoutes for login/register as better-auth handles it.
+// app.use('/api/auth', authRoutes);
+
 app.use('/api/pets', petRoutes);
 app.use('/api/requests', requestRoutes);
 
