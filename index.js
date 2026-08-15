@@ -21,9 +21,8 @@ const requestRoutes = require('./routes/requests');
 const { auth } = require('./utils/auth');
 const { toNodeHandler } = require('better-auth/node');
 
-app.all('/api/auth/*', toNodeHandler(auth.handler));
-// Note: We no longer need the custom authRoutes for login/register as better-auth handles it.
-// app.use('/api/auth', authRoutes);
+// The correct way in express 5 is regex or named parameters:
+app.all(/^\/api\/auth(?:\/.*)?$/, toNodeHandler(auth.handler));
 
 app.use('/api/pets', petRoutes);
 app.use('/api/requests', requestRoutes);
