@@ -17,7 +17,7 @@ const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }
   },
-  trustedOrigins: ["http://localhost:3000", "http://localhost:5173"],
+  trustedOrigins: ["http://localhost:3000", "http://localhost:5173", process.env.FRONTEND_URL],
   advanced: {
     useSecureCookies: process.env.NODE_ENV === "production",
   }

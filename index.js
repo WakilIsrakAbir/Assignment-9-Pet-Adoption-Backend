@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173'], // update later with actual origins
+  origin: ['http://localhost:3000', 'http://localhost:5173', process.env.FRONTEND_URL], // update later with actual origins
   credentials: true
 }));
 app.use(express.json());
@@ -35,8 +35,8 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pet-adoption')
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    if (process.env.NODE_ENV !== 'production') { app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); }
   })
   .catch(err => console.error('MongoDB connection error:', err));
+
+module.exports = app;
