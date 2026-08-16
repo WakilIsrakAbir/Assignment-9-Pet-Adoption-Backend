@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', process.env.FRONTEND_URL], // update later with actual origins
+  origin: process.env.NODE_ENV === "production" 
+    ? ['https://assignment-9-pet-adoption.vercel.app']
+    : ['http://localhost:3000', 'http://localhost:5173'], // update later with actual origins
   credentials: true
 }));
 app.use(express.json());
