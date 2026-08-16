@@ -17,9 +17,11 @@ const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }
   },
-  accountLinking: {
-    enabled: true,
-    trustedProviders: ["google"],
+  account: {
+    accountLinking: {
+      enabled: true,
+      trustedProviders: ["google"],
+    },
   },
   baseURL: process.env.NODE_ENV === "production" ? "https://assignment-9-pet-adoption.vercel.app" : undefined,
   trustedOrigins: process.env.NODE_ENV === "production" 
