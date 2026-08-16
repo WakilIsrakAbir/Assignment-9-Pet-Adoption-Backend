@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const petSchema = new mongoose.Schema({
   petName: { type: String, required: true },
@@ -16,4 +16,4 @@ const petSchema = new mongoose.Schema({
   status: { type: String, enum: ['available', 'adopted'], default: 'available' }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Pet', petSchema);
+export default mongoose.model('Pet', petSchema);

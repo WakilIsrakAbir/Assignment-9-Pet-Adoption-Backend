@@ -1,4 +1,4 @@
-const { auth } = require('../utils/auth');
+import { auth } from '../utils/auth.js';
 
 const verifyToken = async (req, res, next) => {
   try {
@@ -14,4 +14,4 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;

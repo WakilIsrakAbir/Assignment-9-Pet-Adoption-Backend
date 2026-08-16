@@ -1,7 +1,7 @@
-const { betterAuth } = require("better-auth");
-const { MongoClient } = require("mongodb");
-const { mongodbAdapter } = require("@better-auth/mongo-adapter");
-require('dotenv').config();
+import {  betterAuth  } from 'better-auth';
+import {  MongoClient  } from 'mongodb';
+import {  mongodbAdapter  } from '@better-auth/mongo-adapter';
+import 'dotenv/config';
 
 const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db();
@@ -23,4 +23,4 @@ const auth = betterAuth({
   }
 });
 
-module.exports = { auth };
+export {  auth  };

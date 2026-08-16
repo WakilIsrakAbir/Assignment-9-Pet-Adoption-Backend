@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Request = require('../models/Request');
-const Pet = require('../models/Pet');
-const verifyToken = require('../middleware/verifyToken');
+import Request from '../models/Request.js';
+import Pet from '../models/Pet.js';
+import verifyToken from '../middleware/verifyToken.js';
 
 // Submit an adoption request (Protected)
 router.post('/', verifyToken, async (req, res) => {
@@ -77,4 +77,4 @@ router.put('/:id/status', verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

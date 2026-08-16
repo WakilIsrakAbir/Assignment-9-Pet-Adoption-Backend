@@ -1,8 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import 'dotenv/config';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,11 +15,11 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-const petRoutes = require('./routes/pets');
-const requestRoutes = require('./routes/requests');
+import petRoutes from './routes/pets.js';
+import requestRoutes from './routes/requests.js';
 
-const { auth } = require('./utils/auth');
-const { toNodeHandler } = require('better-auth/node');
+import { auth } from './utils/auth.js';
+import { toNodeHandler } from 'better-auth/node';
 
 // The correct way in express 5 is regex or named parameters:
 app.all(/^\/api\/auth(?:\/.*)?$/, toNodeHandler(auth.handler));
@@ -39,4 +39,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pet-adopt
   })
   .catch(err => console.error('MongoDB connection error:', err));
 
-module.exports = app;
+export default app;

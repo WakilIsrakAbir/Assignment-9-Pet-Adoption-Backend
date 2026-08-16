@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const requestSchema = new mongoose.Schema({
   petId: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet', required: true },
@@ -10,4 +10,4 @@ const requestSchema = new mongoose.Schema({
   ownerEmail: { type: String, required: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Request', requestSchema);
+export default mongoose.model('Request', requestSchema);
