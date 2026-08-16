@@ -17,7 +17,7 @@ const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }
   },
-  baseURL: process.env.NODE_ENV === "production" ? "https://assignment-9-pet-adoption-backend.vercel.app" : undefined,
+  baseURL: process.env.NODE_ENV === "production" ? "https://assignment-9-pet-adoption.vercel.app" : undefined,
   trustedOrigins: process.env.NODE_ENV === "production" 
     ? ["https://assignment-9-pet-adoption.vercel.app"]
     : ["http://localhost:3000", "http://localhost:5173"],
